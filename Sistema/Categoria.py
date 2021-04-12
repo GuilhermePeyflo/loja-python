@@ -1,44 +1,97 @@
-import Produto
+from Produto import Produto
 
-def cadastrar_categoria(nome_categoria):
-    if verificar_categoria(nome_categoria):
-        return False
-    else:
-        with open("../BancoDados/categorias.txt", "a") as file:
-            file.write(f"{nome_categoria}\n")
-        return True
 
-def listar_categorias():
-    categorias = list()
-    with open("../BancoDados/categorias.txt", "r") as file:
-        for c in list([i.strip() for i in file.readlines()]):
-            categorias.append(c)
-    return categorias
+class Categoria:
+    """
+    Classe para manipular dados das categorias dos produtos.
+    Permite cadastrar, listar e excluir categorias.
+    """
 
-def excluir_categoria(nome_categoria):
-    if verificar_categoria(nome_categoria):
-        with open("../BancoDados/categorias.txt", "r+") as file:
-            categorias = list()
-            for c in list([i.strip() for i in file.readlines()]):
-                if nome_categoria != c:
+    caminho_banco = "../BancoDados/categorias.txt"
+
+    def __init__(self):
+        """
+        Método para criar o arquivo de banco das categorias caso ainda não exista.
+        """
+        with open(self.caminho_banco, "a") as file:
+            pass
+
+    def cadastrar_categoria(self, nome_categoria: str) -> bool:
+        """
+        Método para cadastrar uma nova categoria de produtos.
+        Caso a categoria já exista, retorna False.
+        Caso a categoria seja cadastrada com sucesso, retorna True.
+
+        :param nome_categoria: str
+        :return bool
+        """
+        if self.verificar_categoria(nome_categoria):
+            return False
+        else:
+            with open(self.caminho_banco, "a") as file:
+                file.write(f"{nome_categoria}\n")
+            return True
+
+    def listar_categorias(self) -> list:
+        """
+        Método para listar as categorias cadastradas.
+        Retorna uma lista com as categorias cadastradas.
+        Caso nenhuma categoria for encontrada ou ocorra algum erro na leitura do arquivo, retorna uma lista vazia.
+
+        :return list
+        """
+        categorias = list()
+        try:
+            with open(self.caminho_banco, "r") as file:
+                for c in list([i.strip() for i in file.readlines()]):
                     categorias.append(c)
-            file.seek(0)
-            for c in categorias:
-                file.write(f"{c}\n")
-            file.truncate()
-        produtos = Produto.pesquisar_produtos(nome_categoria)
-        for p in produtos:
-            p["categoria"] = "None"
-            Produto.alterar_produto(p)
-        return True
-    else:
-        return False
+        except:
+            pass
+        finally:
+            return categorias
 
-def verificar_categoria(nome_categoria):
-    encontrado = False
-    categorias = listar_categorias()
-    if len(categorias) > 0:
-        for c in categorias:
-            if nome_categoria == c:
-                encontrado = True
-    return encontrado
+    def excluir_categoria(self, nome_categoria: str) -> bool:
+        """
+        Método para excluir uma categoria cadastrada.
+        Caso a categoria esteja cadastrada, ela será excluída do arquivo e todos os produtos que possuírem a categoria referenciada 
+        serão alterados para uma categoria nula, retornando True.
+        Caso a categoria não esteja cadastrada, retorna False.
+
+        :param nome_categoria: str
+        :return bool
+        """
+        if self.verificar_categoria(nome_categoria):
+            with open(self.caminho_banco, "r+") as file:
+                categorias = list()
+                for c in list([i.strip() for i in file.readlines()]):
+                    if nome_categoria != c:
+                        categorias.append(c)
+                file.seek(0)
+                for c in categorias:
+                    file.write(f"{c}\n")
+                file.truncate()
+            classe_produto = Produto()
+            produtos = classe_produto.pesquisar_produtos(nome_categoria)
+            for p in produtos:
+                p["categoria"] = "None"
+                classe_produto.alterar_produto(p)
+            return True
+        else:
+            return False
+
+    def verificar_categoria(self, nome_categoria: str) -> bool:
+        """
+        Método para verificar se uma categoria já está cadastrada.
+        Caso a categoria seja encontrada, retorna True.
+        Caso a categoria não seja encontrada, retorna False.
+
+        :param nome_categoria: str
+        :return bool
+        """
+        encontrado = False
+        categorias = self.listar_categorias()
+        if len(categorias) > 0:
+            for c in categorias:
+                if nome_categoria == c:
+                    encontrado = True
+        return encontrado

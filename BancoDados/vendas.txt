@@ -1,3 +1,0 @@
-{'data_hora': '2021-04-09 16:50:20.655947', 'itens_venda': [{'nome': 'Produto 0', 'codigo': '003', 'preco': '27', 'categoria': 'Alimento'}], 'total_venda': '27'}
-{'data_hora': '2021-04-09 16:50:20.687197', 'itens_venda': [{'nome': 'Produto 0', 'codigo': '003', 'preco': '27', 'categoria': 'Alimento'}, {'nome': 'Produto 1', 'codigo': '000', 'preco': '27', 'categoria': 'Bebida'}], 'total_venda': '54'}
-{'data_hora': '2021-04-09 16:50:20.702823', 'itens_venda': [{'nome': 'Produto 0', 'codigo': '003', 'preco': '27', 'categoria': 'Alimento'}, {'nome': 'Produto 1', 'codigo': '000', 'preco': '27', 'categoria': 'Bebida'}, {'nome': 'Produto 2', 'codigo': '001', 'preco': '27', 'categoria': 'Higiene'}], 'total_venda': '81'}
