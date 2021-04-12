@@ -1,0 +1,3 @@
+{'nome': 'Thiago', 'cpf': '000', 'idade': '27'}
+{'nome': 'Gustavo', 'cpf': '002', 'idade': '27'}
+{'nome': 'Joao', 'cpf': '001', 'idade': '27'}
