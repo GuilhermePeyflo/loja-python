@@ -1,8 +1,8 @@
-from Cartao import Cartao
+from Sistema.Cartao import Cartao
 import os
 
 try:
-    os.remove("E:/Documentos/Serasa/Projeto Arquivo - Loja/Desafio Loja/BancoDados/cartoes.txt")
+    os.remove("../BancoDados/cartoes.txt")
 except:
     print("erro")
 finally:
@@ -19,4 +19,3 @@ finally:
     print(cartao.verificar_cartao("2468","IGKL",10))
     # {"numero": "1357", "senha": "MNOP", "validade": "01/2020", "saldo": "100"}
     print(cartao.verificar_cartao("1357", "MNOP", 10))
-    

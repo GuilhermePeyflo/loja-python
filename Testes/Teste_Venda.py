@@ -1,4 +1,4 @@
-import Venda
+from Sistema.Venda import Venda
 from datetime import datetime
 import os
 
@@ -13,13 +13,13 @@ finally:
     itens1 = [produto1]
     itens2 = [produto1, produto2]
     itens3 = [produto1, produto2, produto3]
-    print(Venda.listar_vendas())
+    print(Venda().listar_vendas())
     venda = {"data_hora":str(datetime.today()),"itens_venda":itens1,"total_venda":"27"}
-    Venda.cadastrar_venda(venda)
-    print(Venda.listar_vendas())
+    Venda().cadastrar_venda(venda)
+    print(Venda().listar_vendas())
     venda = {"data_hora":str(datetime.today()),"itens_venda":itens2,"total_venda":"54"}
-    Venda.cadastrar_venda(venda)
-    print(Venda.listar_vendas())
+    Venda().cadastrar_venda(venda)
+    print(Venda().listar_vendas())
     venda = {"data_hora":str(datetime.today()),"itens_venda":itens3,"total_venda":"81"}
-    Venda.cadastrar_venda(venda)
-    print(Venda.listar_vendas())
+    Venda().cadastrar_venda(venda)
+    print(Venda().listar_vendas())

@@ -79,6 +79,7 @@ def run():
             break
 
 
+
 def menu_vendas():
     while True:
         print("-" * 100)
@@ -140,7 +141,7 @@ def menu_vendas():
             print("Realizar Pagamento:")
             total = 0
             for i in carrinho:
-                total += int(i["preco"])
+                total += float(i["preco"])
             print(f"O preço total da compra é R${total:0.2f}")
             if total == 0:
                 print("O carrinho está vazio! Adicione produtos antes de finalizar a compra!")
@@ -244,11 +245,13 @@ def menu_produtos():
                             for i in range(0, len(categorias)):
                                 print(f"{i + 1}) {categorias[i]}")
                             try:
-                                categoria_produto = categorias[int(input("Escolha a categoria do produto a ser cadastrado: ")) - 1]
+                                categoria_produto = categorias[int(input("Escolha a categoria do "
+                                                                         "produto a ser cadastrado: ")) - 1]
                                 break
                             except:
                                 print("Opção inválida!")
-                        novo_produto = {"codigo": codigo_produto, "nome": nome_produto,"preco": preco_produto, "categoria": categoria_produto}
+                        novo_produto = {"codigo": codigo_produto, "nome": nome_produto,"preco": preco_produto,
+                                        "categoria": categoria_produto}
                         if produto_class.cadastrar_produto(novo_produto):
                             print("Produto cadastrado com sucesso!")
                         else:
@@ -454,5 +457,6 @@ def menu_cadastrar_cliente():
 
 
 if __name__ == "__main__":
-    print("Iniciando sistema...")
-    run()
+    # print("Iniciando sistema...")
+    # run()
+    Categoria().listar_categorias()

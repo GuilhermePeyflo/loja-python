@@ -1,4 +1,4 @@
-from Produto import Produto
+from Sistema.Produto import Produto
 
 
 class Categoria:

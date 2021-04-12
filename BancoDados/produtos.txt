@@ -1,3 +1,4 @@
-{'codigo': '53435awd', 'nome': 'Pão', 'preco': '15.5', 'categoria': 'Teste'}
-{'codigo': '2354', 'nome': '524', 'preco': '45', 'categoria': ''}
-{'codigo': '21531', 'nome': '*', 'preco': '45', 'categoria': 'Teste'}
+{'nome': 'Produto 0', 'codigo': '003', 'preco': '27', 'categoria': 'Alimento'}
+{'nome': 'Produto 1', 'codigo': '000', 'preco': '27', 'categoria': 'Bebida'}
+{'nome': 'Produto 3', 'codigo': '002', 'preco': '27', 'categoria': 'Alimento'}
+{'nome': 'Produto 2', 'codigo': '001', 'preco': '27', 'categoria': 'Higiene'}
