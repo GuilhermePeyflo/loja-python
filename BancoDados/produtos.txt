@@ -1,4 +1,0 @@
-{'nome': 'Produto 0', 'codigo': '003', 'preco': '27', 'categoria': 'None'}
-{'nome': 'Produto 1', 'codigo': '000', 'preco': '27', 'categoria': 'Bebida'}
-{'nome': 'Produto 3', 'codigo': '002', 'preco': '27', 'categoria': 'None'}
-{'nome': 'Produto 2', 'codigo': '001', 'preco': '27', 'categoria': 'Higiene'}
