@@ -79,8 +79,10 @@ def run():
             break
 
 
-
 def menu_vendas():
+    """
+    
+    """
     while True:
         print("-" * 100)
         print("Menu venda:\n")
@@ -336,7 +338,7 @@ def menu_produtos():
             if not lista_categorias:
                 print("Nenhuma categoria cadastrada!")
             else:
-                print("Nome:")
+                print("Nome da Categoria:")
                 for cat in lista_categorias:
                     print(f"{cat}")
 
@@ -370,6 +372,8 @@ def menu_produtos():
                     num_categoria = int(input("Digite o número da categoria que deseja excluir: "))
                     if categoria_class.excluir_categoria(lista_categorias[int(num_categoria) - 1]):
                         print("Categoria deletada com sucesso")
+                    elif lista_categorias[int(num_categoria) - 1] == "None":
+                        print("A categoria None não pode ser deletada")
                     else:
                         print("Categoria não encontrada!")
                 except:
@@ -457,6 +461,6 @@ def menu_cadastrar_cliente():
 
 
 if __name__ == "__main__":
-    # print("Iniciando sistema...")
-    # run()
-    Categoria().listar_categorias()
+    print("Iniciando sistema...")
+    run()
+

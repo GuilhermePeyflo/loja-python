@@ -12,9 +12,13 @@ class Categoria:
     def __init__(self):
         """
         Método para criar o arquivo de banco das categorias caso ainda não exista.
+        Verifica se a categoria None já está cadastrada, caso não esteja ela é adicionada.
         """
         with open(self.caminho_banco, "a") as file:
             pass
+        with open(self.caminho_banco, "r+") as file:
+            if file.read() == "":
+                file.write("None\n")
 
     def cadastrar_categoria(self, nome_categoria: str) -> bool:
         """
@@ -56,26 +60,30 @@ class Categoria:
         Caso a categoria esteja cadastrada, ela será excluída do arquivo e todos os produtos que possuírem a categoria referenciada 
         serão alterados para uma categoria nula, retornando True.
         Caso a categoria não esteja cadastrada, retorna False.
+        Caso a categoria passado for None ele não é deletada e retorna False.
 
         :param nome_categoria: str
         :return bool
         """
         if self.verificar_categoria(nome_categoria):
-            with open(self.caminho_banco, "r+") as file:
-                categorias = list()
-                for c in list([i.strip() for i in file.readlines()]):
-                    if nome_categoria != c:
-                        categorias.append(c)
-                file.seek(0)
-                for c in categorias:
-                    file.write(f"{c}\n")
-                file.truncate()
-            classe_produto = Produto()
-            produtos = classe_produto.pesquisar_produtos(nome_categoria)
-            for p in produtos:
-                p["categoria"] = "None"
-                classe_produto.alterar_produto(p)
-            return True
+            if nome_categoria == "None":
+                return False
+            else:
+                with open(self.caminho_banco, "r+") as file:
+                    categorias = list()
+                    for c in list([i.strip() for i in file.readlines()]):
+                        if nome_categoria != c:
+                            categorias.append(c)
+                    file.seek(0)
+                    for c in categorias:
+                        file.write(f"{c}\n")
+                    file.truncate()
+                classe_produto = Produto()
+                produtos = classe_produto.pesquisar_produtos(nome_categoria)
+                for p in produtos:
+                    p["categoria"] = "None"
+                    classe_produto.alterar_produto(p)
+                return True
         else:
             return False
 
