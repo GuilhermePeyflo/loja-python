@@ -1,16 +1,29 @@
 from Sistema.Cartao import Cartao
 import os
 
-class Teste_Cartao:
+
+class TesteCartao:
     """
     Classe de testes da classe Cartao.
     """
 
     def __init__(self):
+        """
+        Método para realizar os testes da classe Cartão.
+        Exclui os dados salvos antes de iniciar e carrega novos dados.
+        Testa se retorna uma lista vazia quando não houver dados salvos.
+        Testa se realiza com sucesso o desconto do saldo quando for informado um cartão válido.
+        Testa se impede a compra caso o saldo for insuficiente.
+        Testa se impede a compra caso a senha estiver incorreta.
+        Testa se impede a compra caso o número for inválido.
+        Testa se impede a compra caso o ano da validade expirou.
+        Testa se impede a compra caso o mês da validade expirou.
+        Testa se impede a compra caso o mês e o ano da validade expiraram.
+        """
         try:
             os.remove("../BancoDados/cartoes.txt")
         except:
-            print("erro")
+            pass
         finally:
             cartao = Cartao()
             if not cartao.listar_cartoes():
@@ -20,7 +33,14 @@ class Teste_Cartao:
 
             # {"numero":"1234","senha":"ABCD","validade":"04/2021","saldo":"10000"}
             if cartao.verificar_cartao("1234","ABCD",1000) == 0:
-                print("Teste Operação com cartão válido: Passou!")
+                ok = False
+                for c in cartao.listar_cartoes():
+                    if c["numero"] == "1234" and c["saldo"] == 9000:
+                        ok = True
+                if ok:
+                    print("Teste Operação com cartão válido: Passou!")
+                else:
+                    print("Teste Operação com cartão válido: Falhou!")
             else:
                 print("Teste Operação com cartão válido: Falhou!")
 
@@ -59,4 +79,4 @@ class Teste_Cartao:
 
 
 if __name__ == "__main__":
-    Teste_Cartao()
+    TesteCartao()

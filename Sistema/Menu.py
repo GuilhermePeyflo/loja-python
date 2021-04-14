@@ -10,6 +10,7 @@ class Menu:
     """
     Classe para representar a função do menu de interação com o usuário do sistema de Loja.
     """
+
     def __init__(self):
         self.cartao_class = Cartao()
         self.categoria_class = Categoria()
@@ -153,8 +154,10 @@ class Menu:
                                 print(f"Seu troco foi de R${troco}")
                                 venda = {"data_hora": str(datetime.today()), "itens_venda": self.carrinho,
                                          "total_venda": total}
-                                self.venda_class.cadastrar_venda(venda)
-                                print("Venda finalizada!")
+                                if self.venda_class.cadastrar_venda(venda):
+                                    print("Venda finalizada!")
+                                else:
+                                    print("Ocorreu um erro ao cadastrar a venda!")
                                 break
                             else:
                                 print("Valor insuficiente!")

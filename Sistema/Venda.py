@@ -16,12 +16,19 @@ class Venda:
         with open(self.caminho_banco, "a") as file:
             pass
 
-    def cadastrar_venda(self, venda: dict):
+    def cadastrar_venda(self, venda: dict) -> bool:
         """
         Método para cadastrar uma nova venda finalizada.
+
+        :param venda: dict
+        :return bool
         """
-        with open(self.caminho_banco, "a") as file:
-            file.write(f"{venda}\n")
+        try:
+            with open(self.caminho_banco, "a") as file:
+                file.write(f"{venda}\n")
+            return True
+        except:
+            return False
 
     def listar_vendas(self) -> list:
         """
